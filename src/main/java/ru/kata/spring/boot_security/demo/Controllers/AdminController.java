@@ -29,60 +29,6 @@ public class AdminController {
         this.userService = userService;
         this.roleService = roleService;
     }
-//
-//    @GetMapping()
-//    public String homeAdminPage() {
-//        return "redirect:/admin/users";
-//    }
-//
-//    @GetMapping("users")
-//    public String allUsers(Model model) {
-//        model.addAttribute("userSet", userService.listUsers());
-//        return "all_users";
-//    }
-//
-//    @GetMapping(value = "users/add")
-//    public String newUser(@ModelAttribute("user") User user, Model model) {
-//        model.addAttribute("roles", roleService.getAllRoles());
-//        return "add_user";
-//    }
-//
-//    @PostMapping(value = "users/add")
-//    public String createNewUser(@ModelAttribute("user") User user
-//            , @RequestParam(value = "roles") String[] roles) {
-//        user.setRoles(roleService.getSetOfRoles(roles));
-//        userService.addUser(user);
-//        return "redirect:/admin/users";
-//    }
-//
-//    @GetMapping("users/{id}/edit")
-//    public String editUser(Model model, @PathVariable("id") Long id) {
-//        model.addAttribute("roles", roleService.getAllRoles());
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "edit_user";
-//    }
-//
-//    @PatchMapping("users/{id}/edit")
-//    public String updateUser(@ModelAttribute("user") User user) {
-//        var roles = user.getRoles();
-//        if(!roles.isEmpty()){
-//            user.setRoles(roles);
-//        }
-//        userService.updateUser(user);
-//        return "redirect:/admin/users";
-//    }
-//
-//    @DeleteMapping("users/{id}/delete")
-//    public String deleteUserById(@PathVariable("id") Long id) {
-//        userService.removeUserById(id);
-//        return "redirect:/admin/users";
-//    }
-//
-//    @GetMapping("users/{id}")
-//    public String show(@PathVariable("id") Long id, ModelMap modelMap) {
-//        modelMap.addAttribute("user", userService.getUserById(id));
-//        return "user_info_by_id";
-//    }
 
     @GetMapping
     public String allUsers(@AuthenticationPrincipal User user, Model model) {
@@ -92,7 +38,6 @@ public class AdminController {
         return "admin";
     }
 
-    // add user
 
     @PostMapping
     public String createNewUser(@ModelAttribute("user") User user,
@@ -103,7 +48,6 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    // edit users
 
     @GetMapping("{id}/edit")
     public String editUserForm(@ModelAttribute("user") User user,
@@ -130,7 +74,7 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    // remove users
+
 
     @GetMapping("/{id}/remove")
     public String deleteUserById(@PathVariable("id") long id) {
