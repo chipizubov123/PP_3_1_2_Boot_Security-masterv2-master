@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void updateUser(User user) {
 
         if (user.getRoles().isEmpty()) {
-            var roles = userDAO.getUserByUsername(user.getUsername()).getRoles();
+            var roles = userDAO.getUserById(user.getId()).getRoles();
             user.setRoles(roles);
         }
         if (user.getPassword().isEmpty()) {
