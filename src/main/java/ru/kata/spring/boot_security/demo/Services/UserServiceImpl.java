@@ -33,9 +33,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
         userDAO.addUser(user);
         user.setPassword(bCryptPasswordEncode.encode(user.getPassword()));
+        return user;
     }
 
     @Transactional(readOnly = true)
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional()
-    public void updateUser(User user) {
+    public User updateUser(User user) {
 
         if (user.getRoles().isEmpty()) {
             var roles = userDAO.getUserById(user.getId()).getRoles();
@@ -58,6 +59,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user.setPassword(bCryptPasswordEncode.encode(user.getPassword()));
         }
         userDAO.updateUser(user);
+        return user;
     }
 
     @Override
