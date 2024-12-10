@@ -2,7 +2,10 @@ package ru.kata.spring.boot_security.demo.Models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +23,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
+@RequiredArgsConstructor
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
 
@@ -35,13 +39,6 @@ public class Role implements GrantedAuthority {
     @ToString.Exclude
     @JsonBackReference
     private List <User> user;
-
-    public Role(String name) {
-        this.name = name;
-    }
-
-    public Role() {
-    }
 
     @Override
     public String getAuthority() {

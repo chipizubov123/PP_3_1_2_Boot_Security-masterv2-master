@@ -13,11 +13,11 @@ async function getUsers() {
 
         const placement = document.getElementById("usersTablePlacement")
         placement.innerHTML = "";
-        data.forEach(({id, username, email, roles}) => {
+        data.forEach(({id, username, email, password, authorities}) => {
             let userRoles = "";
-            roles.forEach((role) => {
-                userRoles = userRoles + role.role.replace("ROLE_", "") + " ";
-            })
+            authorities.forEach((role) => {
+                userRoles = userRoles + role.name + " ";
+            });
             const element = document.createElement("tr");
 
             element.innerHTML = `
@@ -26,23 +26,78 @@ async function getUsers() {
             <td>${email}</td>
             <td>${userRoles}</td>
             <td>
-                <button type="button" class="btn btn-info text-white" 
+                <button type="button" class="btn btn-info text-white"
                     data-bs-userId=${id}
-                    data-bs-userUsername=${username} 
-                    data-bs-userEmail=${email} 
+                    data-bs-userUsername=${username}
+                    data-bs-userEmail=${email}
+                    data-bs-userPassword = ${password}
                     data-bs-toggle="modal"
                     data-bs-target="#ModalEdit">Edit</button>
             </td>
             <td>
-                <button type="button" class="btn btn-danger" 
+                <button type="button" class="btn btn-danger"
                     data-bs-userId=${id}
-                    data-bs-userUsername=${username} 
-                    data-bs-userEmail=${email} 
+                    data-bs-userUsername=${username}
+                    data-bs-userEmail=${email}
                     data-bs-toggle="modal"
                     data-bs-target="#ModalDelete">Delete</button>
-            </td>            
+            </td>
             `
             placement.append(element);
         })
     }
 }
+// async function getUsers() {
+//     try {
+//         const response = await fetch("api/admin/");
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         const data = await response.json();
+//         replaceTable(data);
+//     } catch (error) {
+//         console.error(error.message);
+//         alert("Произошла ошибка при загрузке пользователей.");
+//     }
+// }
+//
+// function replaceTable(data) {
+//     const placement = document.getElementById("usersTablePlacement");
+//     if (!placement) {
+//         console.error("Элемент 'usersTablePlacement' не найден!");
+//         return;
+//     }
+//
+//     placement.innerHTML = ""; // очищаем таблицу перед добавлением новых строк
+//
+//     data.forEach(({ id, username, email, roles }) => {
+//         let userRoles = "";
+//         roles.forEach((role) => {
+//             userRoles += role.role.replace("ROLE_", "") + " ";
+//         });
+//
+//         const element = document.createElement("tr");
+//         element.innerHTML = `
+//             <th scope="row">${id}</th>
+//             <td>${username}</td>
+//             <td>${email}</td>
+//             <td>${userRoles.trim()}</td>
+//             <td>
+//                 <button type="button" class="btn btn-info text-white"
+//                         data-bs-userId="${id}"
+//                         data-bs-userUsername="${username}"
+//                         data-bs-userEmail="${email}"
+//                         data-bs-toggle="modal"
+//                         data-bs-target="#ModalEdit">Edit</button>
+//             </td>
+//             <td>
+//                 <button type="button" class="btn btn-danger"
+//                         data-bs-userId="${id}"
+//                         data-bs-userUsername="${username}"
+//                         data-bs-userEmail="${email}"
+//                         data-bs-toggle="modal"
+//                         data-bs-target="#ModalDelete">Delete</button>
+//             </td>`;
+//         placement.appendChild(element); // добавляем строку в таблицу
+//     });
+// }

@@ -73,7 +73,7 @@ public class AdminRestController {
 
     @PostMapping()
     public ResponseEntity<List<User>> createUser(@RequestBody User user) {
-        userService.addUser(user);
+        userService.addUser(user, user.getRoles());
         return ResponseEntity.ok(userService.listUsers());
     }
 

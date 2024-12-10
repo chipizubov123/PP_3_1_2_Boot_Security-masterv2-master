@@ -7,14 +7,17 @@ editModal.addEventListener('show.bs.modal', event => {
     const userId = button.getAttribute('data-bs-userId')
     const userUserName = button.getAttribute('data-bs-userUserName')
     const userEmail = button.getAttribute('data-bs-userEmail')
+    const userPassword = button.getAttribute('data-bs-userPassword')
 
     const modalUserId = editModal.querySelector('#userId')
     const modalUserUserName = editModal.querySelector('#userUserName')
     const modalUserEmail = editModal.querySelector('#userEmail')
+    const modalUserPassword = editModal.querySelector('#userPassword')
 
     modalUserId.value = userId
     modalUserUserName.value = userUserName
     modalUserEmail.value = userEmail
+    modalUserPassword.value = userPassword
 
 })
 
@@ -33,12 +36,12 @@ formEdit.addEventListener('submit', e => {
 
             const roleId = value.split(" ")[0];
             const roleName = value.split(" ")[1];
-            const role = {
+            const authorities = {
                 id : roleId,
-                role : roleName
+                name : roleName
             };
 
-            object.roles.push(role);
+            object.roles.push(authorities);
         } else {
             object[key] = value;
         }

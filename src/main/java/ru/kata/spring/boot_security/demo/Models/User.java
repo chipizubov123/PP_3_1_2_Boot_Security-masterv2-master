@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -50,19 +52,12 @@ public class User implements UserDetails {
     @Email
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     @ToString.Exclude
-    @JsonManagedReference
     private List<Role> roles;
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-
-    }
 
     @Override
     public boolean isAccountNonExpired() {

@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -8,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.DAO.UserDAO;
+import ru.kata.spring.boot_security.demo.Models.Role;
 import ru.kata.spring.boot_security.demo.Models.User;
 
 import java.util.List;
@@ -32,11 +34,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userDAO.getUserByUsername(username);
     }
 
-    @Override
-    public User addUser(User user) {
-        userDAO.addUser(user);
+    @Transactional
+    public void addUser(User user) {
         user.setPassword(bCryptPasswordEncode.encode(user.getPassword()));
-        return user;
+        userDAO.addUser(user);
+    }
+
+    @Transactional
+    public void addUser(User user, List <Role> roles) {
+        user.setRoles(roles);
+        user.setPassword(bCryptPasswordEncode.encode(user.getPassword()));
+        userDAO.addUser(user);
     }
 
     @Transactional(readOnly = true)
@@ -46,20 +54,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional()
-    public User updateUser(User user) {
+    public void updateUser(User user) {
 
         if (user.getRoles().isEmpty()) {
             var roles = userDAO.getUserById(user.getId()).getRoles();
             user.setRoles(roles);
         }
         if (user.getPassword().isEmpty()) {
-            var password = userDAO.getUserByUsername(user.getUsername()).getPassword();
+            var password = userDAO.getUserById(user.getId()).getPassword();
             user.setPassword(password);
         } else {
             user.setPassword(bCryptPasswordEncode.encode(user.getPassword()));
         }
         userDAO.updateUser(user);
-        return user;
     }
 
     @Override
