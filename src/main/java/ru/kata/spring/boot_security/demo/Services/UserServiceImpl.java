@@ -60,12 +60,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             var roles = userDAO.getUserById(user.getId()).getRoles();
             user.setRoles(roles);
         }
-        if (user.getPassword().isEmpty()) {
-            var password = userDAO.getUserById(user.getId()).getPassword();
-            user.setPassword(password);
-        } else {
-            user.setPassword(bCryptPasswordEncode.encode(user.getPassword()));
-        }
         userDAO.updateUser(user);
     }
 
