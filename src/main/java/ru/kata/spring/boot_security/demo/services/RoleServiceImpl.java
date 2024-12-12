@@ -1,16 +1,15 @@
-package ru.kata.spring.boot_security.demo.Services;
+package ru.kata.spring.boot_security.demo.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.DAO.RoleDAO;
-import ru.kata.spring.boot_security.demo.Models.Role;
+import ru.kata.spring.boot_security.demo.models.Role;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class RoleServiceImpl implements RoleService {
 
     private final RoleDAO roleDAO;

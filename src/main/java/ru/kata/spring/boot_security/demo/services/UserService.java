@@ -1,8 +1,8 @@
-package ru.kata.spring.boot_security.demo.Services;
+package ru.kata.spring.boot_security.demo.services;
 
 
-import ru.kata.spring.boot_security.demo.Models.Role;
-import ru.kata.spring.boot_security.demo.Models.User;
+import ru.kata.spring.boot_security.demo.models.Role;
+import ru.kata.spring.boot_security.demo.models.User;
 
 import java.util.List;
 

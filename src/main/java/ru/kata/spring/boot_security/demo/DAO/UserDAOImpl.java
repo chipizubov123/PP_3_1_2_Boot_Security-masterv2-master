@@ -2,7 +2,7 @@ package ru.kata.spring.boot_security.demo.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.kata.spring.boot_security.demo.Models.User;
+import ru.kata.spring.boot_security.demo.models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

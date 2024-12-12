@@ -1,10 +1,8 @@
-package ru.kata.spring.boot_security.demo.Models;
+package ru.kata.spring.boot_security.demo.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
