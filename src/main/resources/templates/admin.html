@@ -14,14 +14,12 @@
 <!-- Heading -->
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <th th:text="${user.email}"></th> with roles: <td th:text="${user.getRoles()}"></td></a>
-        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout
-                </a>
-            </li>
-        </ul>
+        <div class="navbar-brand" id = "headerInfo">
+
+        </div>
+        <div class="navbar-nav ml-auto mb-2 mb-lg-0">
+            <a class="nav-link" href="/logout">Logout</a>
+        </div>
     </div>
 </nav>
 
@@ -229,6 +227,7 @@
 <script type="text/javascript" th:src="@{deleteUser.js}"></script>
 <script type="text/javascript" th:src="@{addForm.js}"></script>
 <script type="text/javascript" th:src="@{getUsers.js}"></script>
+<script type="text/javascript" th:src="@{currentUser.js}"></script>
 <!--<script type="text/javascript" th:src="@{pageUpdate.js}"></script>-->
 <script> getUsers() </script>
 

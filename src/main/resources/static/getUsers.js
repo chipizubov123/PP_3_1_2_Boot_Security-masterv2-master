@@ -9,6 +9,12 @@ async function getUsers() {
         alert("Ошибка HTTP: " + response.status);
     }
 
+    const headerInfoJS = document.getElementById("headerInfo");
+
+    const userInfo = data.email + " with roles: " + data.roles.map((role) => role.name === "ROLE_USER" ? " ROLE_USER " : " ROLE_ADMIN ");
+
+    headerInfoJS.append(userInfo);
+
     function replaceTable(data) {
 
         const placement = document.getElementById("usersTablePlacement")
@@ -47,57 +53,3 @@ async function getUsers() {
         })
     }
 }
-// async function getUsers() {
-//     try {
-//         const response = await fetch("api/admin/");
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         const data = await response.json();
-//         replaceTable(data);
-//     } catch (error) {
-//         console.error(error.message);
-//         alert("Произошла ошибка при загрузке пользователей.");
-//     }
-// }
-//
-// function replaceTable(data) {
-//     const placement = document.getElementById("usersTablePlacement");
-//     if (!placement) {
-//         console.error("Элемент 'usersTablePlacement' не найден!");
-//         return;
-//     }
-//
-//     placement.innerHTML = ""; // очищаем таблицу перед добавлением новых строк
-//
-//     data.forEach(({ id, username, email, roles }) => {
-//         let userRoles = "";
-//         roles.forEach((role) => {
-//             userRoles += role.role.replace("ROLE_", "") + " ";
-//         });
-//
-//         const element = document.createElement("tr");
-//         element.innerHTML = `
-//             <th scope="row">${id}</th>
-//             <td>${username}</td>
-//             <td>${email}</td>
-//             <td>${userRoles.trim()}</td>
-//             <td>
-//                 <button type="button" class="btn btn-info text-white"
-//                         data-bs-userId="${id}"
-//                         data-bs-userUsername="${username}"
-//                         data-bs-userEmail="${email}"
-//                         data-bs-toggle="modal"
-//                         data-bs-target="#ModalEdit">Edit</button>
-//             </td>
-//             <td>
-//                 <button type="button" class="btn btn-danger"
-//                         data-bs-userId="${id}"
-//                         data-bs-userUsername="${username}"
-//                         data-bs-userEmail="${email}"
-//                         data-bs-toggle="modal"
-//                         data-bs-target="#ModalDelete">Delete</button>
-//             </td>`;
-//         placement.appendChild(element); // добавляем строку в таблицу
-//     });
-// }
