@@ -30,21 +30,24 @@ public class AdminRestController {
 
     private final UserService userService;
 
-    private final RoleService roleService;
-
     @GetMapping()
     public ResponseEntity<List<User>> getAllUser() {
         return ResponseEntity.ok(userService.listUsers());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity <User> getUserById (@PathVariable ("id") Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
     @PostMapping()
     public ResponseEntity<List<User>> createUser(@RequestBody User user) {
-        userService.addUser(user, user.getRoles());
+        userService.addUser(user);
         return ResponseEntity.ok(userService.listUsers());
     }
 
-    @PutMapping()
-    public ResponseEntity<List<User>> updateUser(@RequestBody User user){
+    @PutMapping({"/{id}"})
+    public ResponseEntity<List<User>> updateUser(@RequestBody User user, @PathVariable ("id") Long id){
         if (user.getPassword() == null)
             user.setPassword(userService.getUserById(user.getId()).getPassword());
         userService.updateUser(user);
