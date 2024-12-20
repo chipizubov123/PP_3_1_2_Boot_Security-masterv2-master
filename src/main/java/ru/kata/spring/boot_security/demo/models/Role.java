@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "name", unique = true, length = 50)
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", cascade ={CascadeType.PERSIST, CascadeType.MERGE})
     @ToString.Exclude
     @JsonBackReference
     private List <User> user;
