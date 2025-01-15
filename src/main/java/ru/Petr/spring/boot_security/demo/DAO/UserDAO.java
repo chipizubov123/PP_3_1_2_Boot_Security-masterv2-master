@@ -1,6 +1,6 @@
-package ru.kata.spring.boot_security.demo.DAO;
+package ru.Petr.spring.boot_security.demo.DAO;
 
-import ru.kata.spring.boot_security.demo.models.User;
+import ru.Petr.spring.boot_security.demo.models.User;
 
 import java.util.List;
 

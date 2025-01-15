@@ -1,8 +1,8 @@
-package ru.kata.spring.boot_security.demo.DAO;
+package ru.Petr.spring.boot_security.demo.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.kata.spring.boot_security.demo.models.Role;
+import ru.Petr.spring.boot_security.demo.models.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

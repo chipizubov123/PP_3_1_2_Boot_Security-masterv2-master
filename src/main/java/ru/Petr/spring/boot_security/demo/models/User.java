@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.models;
+package ru.Petr.spring.boot_security.demo.models;
 
 
 import lombok.Getter;

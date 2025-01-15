@@ -1,10 +1,10 @@
-package ru.kata.spring.boot_security.demo.services;
+package ru.Petr.spring.boot_security.demo.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.DAO.RoleDAO;
-import ru.kata.spring.boot_security.demo.models.Role;
+import ru.Petr.spring.boot_security.demo.DAO.RoleDAO;
+import ru.Petr.spring.boot_security.demo.models.Role;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

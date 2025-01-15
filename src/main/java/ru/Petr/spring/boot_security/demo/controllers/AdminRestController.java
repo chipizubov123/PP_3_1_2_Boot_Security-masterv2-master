@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.controllers;
+package ru.Petr.spring.boot_security.demo.controllers;
 
 
 import lombok.AllArgsConstructor;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kata.spring.boot_security.demo.models.Role;
-import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.services.RoleService;
-import ru.kata.spring.boot_security.demo.services.UserService;
+import ru.Petr.spring.boot_security.demo.models.Role;
+import ru.Petr.spring.boot_security.demo.models.User;
+import ru.Petr.spring.boot_security.demo.services.RoleService;
+import ru.Petr.spring.boot_security.demo.services.UserService;
 
 import java.util.List;
 
